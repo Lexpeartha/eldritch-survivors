@@ -1,0 +1,32 @@
+[gd_scene load_steps=9 format=3 uid="uid://boahrs0t4qv0l"]
+
+[ext_resource type="PackedScene" uid="uid://d1eh5h1o7sv36" path="res://Source/Nodes/Player/Player.tscn" id="1_mdglb"]
+[ext_resource type="Script" path="res://Source/Levels/PlaygroundLevel.cs" id="1_o40n5"]
+[ext_resource type="PackedScene" uid="uid://cil2tq1msbttb" path="res://Source/Nodes/ModularWeapon/ModularWeapon.tscn" id="3_c6kwf"]
+[ext_resource type="PackedScene" uid="uid://byvaf4r5aukkt" path="res://Source/MapGeneration/Props/Portal.tscn" id="3_extfw"]
+[ext_resource type="PackedScene" uid="uid://cls2aygn5eqyj" path="res://Source/MapGeneration/Props/Torch.tscn" id="4_1wrch"]
+[ext_resource type="PackedScene" uid="uid://bl1tijalki5n6" path="res://Source/Nodes/ProjectileConfiguration/Configurations/ForwardWideConfiguration.tscn" id="4_2ec2k"]
+[ext_resource type="PackedScene" uid="uid://c23y2cb760el" path="res://Source/Nodes/Projectile/Templates/Basic/BasicSpawner.tscn" id="5_ro5jl"]
+[ext_resource type="Resource" uid="uid://b8dp5m53r7is0" path="res://Storage/Motions/StraightMotion.tres" id="6_sul73"]
+
+[node name="PlaygroundLevel" type="Node2D"]
+script = ExtResource("1_o40n5")
+
+[node name="Player" parent="." instance=ExtResource("1_mdglb")]
+unique_name_in_owner = true
+position = Vector2(640, 320)
+
+[node name="ModularWeapon" parent="Player" instance=ExtResource("3_c6kwf")]
+EmitterConfigScene = ExtResource("4_2ec2k")
+ProjectileSpawnerScene = ExtResource("5_ro5jl")
+ProjectileMotions = [ExtResource("6_sul73")]
+
+[node name="TestTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[node name="Portal" parent="." instance=ExtResource("3_extfw")]
+position = Vector2(320, 256)
+
+[node name="Torch" parent="." instance=ExtResource("4_1wrch")]
+position = Vector2(480, 560)

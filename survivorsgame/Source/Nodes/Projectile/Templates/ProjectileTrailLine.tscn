@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://jlefvq2mobov"]
+
+[ext_resource type="Curve" uid="uid://bmfc54foesv7j" path="res://Source/Nodes/Projectile/Templates/ProjectileTrailWidthCurve.tres" id="1_wkrko"]
+[ext_resource type="Script" path="res://Source/Nodes/Projectile/Templates/ProjectileTrailLine.cs" id="1_ysgk7"]
+
+[node name="TrailLine" type="Line2D"]
+top_level = true
+position = Vector2(-0.4, -4)
+points = PackedVector2Array(0.4, 0, 0.4, 20)
+width = 6.0
+width_curve = ExtResource("1_wkrko")
+joint_mode = 1
+begin_cap_mode = 2
+script = ExtResource("1_ysgk7")

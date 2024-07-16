@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="StraightMotion" load_steps=2 format=3 uid="uid://b8dp5m53r7is0"]
+
+[ext_resource type="Script" path="res://Source/Resources/ProjectileMotion/Templates/StraightMotion.cs" id="1_yki7o"]
+
+[resource]
+script = ExtResource("1_yki7o")
+Speed = 600.0

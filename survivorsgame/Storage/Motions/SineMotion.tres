@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="SineMotion" load_steps=2 format=3 uid="uid://1rstsudi0wqp"]
+
+[ext_resource type="Script" path="res://Source/Resources/ProjectileMotion/Templates/SineMotion.cs" id="1_shxik"]
+
+[resource]
+script = ExtResource("1_shxik")
+Amplitude = 250.0
+Frequency = 4.0

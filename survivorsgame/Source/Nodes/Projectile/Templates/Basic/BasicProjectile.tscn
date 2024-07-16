@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://dle5uh7way3te"]
+
+[ext_resource type="Script" path="res://Source/Nodes/Projectile/Templates/Basic/BasicProjectile.cs" id="1_c5kel"]
+[ext_resource type="PackedScene" uid="uid://jlefvq2mobov" path="res://Source/Nodes/Projectile/Templates/ProjectileTrailLine.tscn" id="2_iw6ro"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jjow5"]
+size = Vector2(8, 12)
+
+[node name="BasicProjectile" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 6
+motion_mode = 1
+script = ExtResource("1_c5kel")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_jjow5")
+
+[node name="TrailLine" parent="." instance=ExtResource("2_iw6ro")]
+unique_name_in_owner = true
+MaxTrailPoints = 5
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-4.76837e-07, -2)
+scale = Vector2(0.8, 1)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="OnScreenExited"]

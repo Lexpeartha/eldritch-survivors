@@ -1,0 +1,2 @@
+**/*.x86_64 filter=lfs diff=lfs merge=lfs -text
+godot.linuxbsd.editor.x86_64.eldritch_survivors.mono filter=lfs diff=lfs merge=lfs -text

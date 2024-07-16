@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://ve3307bfpp6p"]
+
+[ext_resource type="PackedScene" uid="uid://cgos14eaafa6x" path="res://Source/Nodes/ProjectileConfiguration/WeaponLocation.tscn" id="1_is1si"]
+
+[node name="Cone3Configuration" type="Node2D"]
+
+[node name="LeftWeaponLocation" parent="." instance=ExtResource("1_is1si")]
+position = Vector2(-8, -8)
+rotation = -0.20944
+
+[node name="MiddleWeaponLocation" parent="." instance=ExtResource("1_is1si")]
+position = Vector2(0, -16)
+
+[node name="RightWeaponLocation" parent="." instance=ExtResource("1_is1si")]
+position = Vector2(8, -8)
+rotation = 0.20944

@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dd48j6m2ftvv6"]
+
+[ext_resource type="PackedScene" uid="uid://cgos14eaafa6x" path="res://Source/Nodes/ProjectileConfiguration/WeaponLocation.tscn" id="1_0dh1x"]
+
+[node name="2Forward1BackConfiguration" type="Node2D"]
+
+[node name="FrontLeftWeaponLocation" parent="." instance=ExtResource("1_0dh1x")]
+position = Vector2(-8, -8)
+
+[node name="FrontRightWeaponLocation" parent="." instance=ExtResource("1_0dh1x")]
+position = Vector2(8, -8)
+
+[node name="BackWeaponLocation" parent="." instance=ExtResource("1_0dh1x")]
+position = Vector2(0, 8)
+rotation = 3.14159

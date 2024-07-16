@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://bl1tijalki5n6"]
+
+[ext_resource type="PackedScene" uid="uid://cgos14eaafa6x" path="res://Source/Nodes/ProjectileConfiguration/WeaponLocation.tscn" id="1_b1rvg"]
+
+[node name="ForwardWideConfiguration" type="Node2D"]
+
+[node name="WeaponLocation1" parent="." instance=ExtResource("1_b1rvg")]
+position = Vector2(-32, 0)
+rotation = -0.349066
+
+[node name="WeaponLocation2" parent="." instance=ExtResource("1_b1rvg")]
+position = Vector2(-16, -8)
+rotation = -0.174533
+
+[node name="WeaponLocation3" parent="." instance=ExtResource("1_b1rvg")]
+position = Vector2(0, -8)
+
+[node name="WeaponLocation4" parent="." instance=ExtResource("1_b1rvg")]
+position = Vector2(16, -8)
+rotation = 0.174533
+
+[node name="WeaponLocation5" parent="." instance=ExtResource("1_b1rvg")]
+position = Vector2(32, 0)
+rotation = 0.349066

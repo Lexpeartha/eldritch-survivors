@@ -1,0 +1,78 @@
+[gd_scene load_steps=12 format=3 uid="uid://cls2aygn5eqyj"]
+
+[ext_resource type="Texture2D" uid="uid://bwwcens66nukm" path="res://Source/Assets/Props/Torch1.png" id="1_1jhqk"]
+[ext_resource type="Texture2D" uid="uid://byn0tjrnu6ogu" path="res://Source/Assets/Props/TorchFire.png" id="2_8cygi"]
+[ext_resource type="PackedScene" uid="uid://fiyjtauhp3f" path="res://Source/MapGeneration/Props/FireParticles.tscn" id="2_l53ah"]
+[ext_resource type="Texture2D" uid="uid://cvepmtdsmj5kg" path="res://Source/Assets/Props/LightMask.tres" id="4_i2n35"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02lgj"]
+atlas = ExtResource("2_8cygi")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4u2jo"]
+atlas = ExtResource("2_8cygi")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dh7o1"]
+atlas = ExtResource("2_8cygi")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oossx"]
+atlas = ExtResource("2_8cygi")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1rhu"]
+atlas = ExtResource("2_8cygi")
+region = Rect2(64, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7esot"]
+atlas = ExtResource("2_8cygi")
+region = Rect2(80, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xyyn4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02lgj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4u2jo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dh7o1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oossx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1rhu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7esot")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Torch" type="Node2D"]
+
+[node name="TorchSprite" type="Sprite2D" parent="."]
+position = Vector2(-2, -48)
+scale = Vector2(3, 3)
+texture = ExtResource("1_1jhqk")
+
+[node name="FireParticles" parent="." instance=ExtResource("2_l53ah")]
+position = Vector2(-2, -96)
+
+[node name="AnimationPlayer" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, -96)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_xyyn4")
+autoplay = "default"
+frame_progress = 0.406733
+
+[node name="FireLightLeft" type="PointLight2D" parent="."]
+position = Vector2(-2, -96)
+color = Color(0.705882, 0.345098, 0.890196, 1)
+texture = ExtResource("4_i2n35")

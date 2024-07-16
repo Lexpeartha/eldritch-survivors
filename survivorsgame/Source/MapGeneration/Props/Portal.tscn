@@ -1,0 +1,308 @@
+[gd_scene load_steps=22 format=3 uid="uid://byvaf4r5aukkt"]
+
+[ext_resource type="Texture2D" uid="uid://gffo6ho2avqa" path="res://Source/Assets/Props/PortalFrameFire.png" id="1_1bu01"]
+[ext_resource type="Shader" path="res://Source/Assets/Props/PortalShader.gdshader" id="1_2dijf"]
+[ext_resource type="Texture2D" uid="uid://cvepmtdsmj5kg" path="res://Source/Assets/Props/LightMask.tres" id="1_4n282"]
+[ext_resource type="PackedScene" uid="uid://fiyjtauhp3f" path="res://Source/MapGeneration/Props/FireParticles.tscn" id="1_dv8yg"]
+[ext_resource type="Texture2D" uid="uid://bsai0srct4tpu" path="res://Source/Assets/Props/Portal.png" id="2_63la8"]
+[ext_resource type="Texture2D" uid="uid://d1sc7dec6ox4r" path="res://Source/Assets/Props/PortalFrame.png" id="3_1aefh"]
+[ext_resource type="Texture2D" uid="uid://dtmv5et1di2tt" path="res://Source/Assets/Props/PortalNoise.png" id="3_chojk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqwf3"]
+atlas = ExtResource("1_1bu01")
+region = Rect2(0, 0, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5arb"]
+atlas = ExtResource("1_1bu01")
+region = Rect2(80, 0, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3xuu"]
+atlas = ExtResource("1_1bu01")
+region = Rect2(160, 0, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0c5j7"]
+atlas = ExtResource("1_1bu01")
+region = Rect2(240, 0, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsnjd"]
+atlas = ExtResource("1_1bu01")
+region = Rect2(320, 0, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ra7pl"]
+atlas = ExtResource("1_1bu01")
+region = Rect2(400, 0, 80, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fad86"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pqwf3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5arb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3xuu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0c5j7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsnjd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ra7pl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2oq1j"]
+shader = ExtResource("1_2dijf")
+shader_parameter/spiral_effect_intensity = 1.1
+shader_parameter/rotation_speed = 0.2
+shader_parameter/slices = 16.0
+shader_parameter/background_color = Color(0.870588, 0.447059, 0.972549, 1)
+shader_parameter/slice_color = Color(0.705882, 0.345098, 0.890196, 1)
+shader_parameter/noise_offset_amplitude = 0.05
+shader_parameter/noise_oscillation_period = 2.0
+shader_parameter/noise_clamp = Vector2(0.25, 0.75)
+shader_parameter/noise = ExtResource("3_chojk")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tkp2u"]
+size = Vector2(100, 16)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u4goh"]
+radius = 8.0
+height = 40.0
+
+[sub_resource type="Animation" id="Animation_hwhnl"]
+resource_name = "ClosePortal"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PortalSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PortalSprite:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.6),
+"transitions": PackedFloat32Array(1, 0.90125, 1),
+"update": 0,
+"values": [3.0, 3.15, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PortalSprite:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.6),
+"transitions": PackedFloat32Array(1, 2, 1),
+"update": 0,
+"values": [3.0, 3.2, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PortalCollision/CollisionShape:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_rgw1i"]
+resource_name = "OpenPortal"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PortalSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PortalSprite:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.433333, 0.6),
+"transitions": PackedFloat32Array(1, 0.90125, 1),
+"update": 0,
+"values": [0.0, 3.15, 3.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PortalSprite:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.6),
+"transitions": PackedFloat32Array(1, 2, 1),
+"update": 0,
+"values": [0.0, 3.2, 3.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PortalCollision/CollisionShape:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_e14v5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PortalSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PortalSprite:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PortalSprite:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PortalCollision/CollisionShape:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2be43"]
+_data = {
+"ClosePortal": SubResource("Animation_hwhnl"),
+"OpenPortal": SubResource("Animation_rgw1i"),
+"RESET": SubResource("Animation_e14v5")
+}
+
+[node name="Portal" type="Node2D"]
+
+[node name="Particles" type="Node2D" parent="."]
+
+[node name="FireParticlesLeft" parent="Particles" instance=ExtResource("1_dv8yg")]
+position = Vector2(-99, -84)
+
+[node name="FireParticlesRight" parent="Particles" instance=ExtResource("1_dv8yg")]
+position = Vector2(102, -84)
+
+[node name="PortalFireAnimation" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -72)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_fad86")
+autoplay = "default"
+frame = 1
+frame_progress = 0.597558
+
+[node name="Lights" type="Node2D" parent="."]
+
+[node name="FireLightLeft" type="PointLight2D" parent="Lights"]
+position = Vector2(-99, -84)
+color = Color(0.705882, 0.345098, 0.890196, 1)
+texture = ExtResource("1_4n282")
+
+[node name="FireLightRight" type="PointLight2D" parent="Lights"]
+position = Vector2(102, -84)
+color = Color(0.705882, 0.345098, 0.890196, 1)
+texture = ExtResource("1_4n282")
+
+[node name="PortalSprite" type="Sprite2D" parent="."]
+light_mask = 0
+material = SubResource("ShaderMaterial_2oq1j")
+position = Vector2(0, -54)
+scale = Vector2(3, 3)
+texture = ExtResource("2_63la8")
+
+[node name="PortalCollision" type="StaticBody2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape" type="CollisionShape2D" parent="PortalCollision"]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_tkp2u")
+
+[node name="PortalFrameSprite" type="Sprite2D" parent="."]
+position = Vector2(-1.5, -72)
+scale = Vector2(3, 3)
+texture = ExtResource("3_1aefh")
+
+[node name="PortalFrameCollision" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 13
+
+[node name="CollisionShape1" type="CollisionShape2D" parent="PortalFrameCollision"]
+position = Vector2(-72, -8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_u4goh")
+
+[node name="CollisionShape2" type="CollisionShape2D" parent="PortalFrameCollision"]
+position = Vector2(72, -8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_u4goh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2be43")
+}

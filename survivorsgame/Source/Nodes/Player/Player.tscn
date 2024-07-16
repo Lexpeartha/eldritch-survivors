@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1eh5h1o7sv36"]
+
+[ext_resource type="Script" path="res://Source/Nodes/Player/Player.cs" id="1_48l71"]
+[ext_resource type="Texture2D" uid="uid://c6r32v3rofmeu" path="res://Source/Assets/Characters/Placeholder.png" id="2_6lydt"]
+[ext_resource type="Script" path="res://Source/Systems/Damage/DamageSystem.cs" id="3_levex"]
+[ext_resource type="Script" path="res://Source/Systems/Damage/Components/IceComponent.cs" id="4_7juwu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aknq4"]
+size = Vector2(56, 80)
+
+[sub_resource type="Curve2D" id="Curve2D_qkktc"]
+_data = {
+"points": PackedVector2Array(0, 0, 45, 0, 0, -45, 0, 0, 0, 45, 45, 0, 0, 0, -45, 0, 0, 45, 0, 0, 0, -45, -45, 0, 0, 0, 0, 0, 0, -45)
+}
+point_count = 5
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 7
+motion_mode = 1
+script = ExtResource("1_48l71")
+Hp = 20
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+position = Vector2(2, -40)
+scale = Vector2(3, 3)
+texture = ExtResource("2_6lydt")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -40)
+shape = SubResource("RectangleShape2D_aknq4")
+
+[node name="DamageSystem" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_levex")
+GroupName = &"DamageSystemGroup"
+
+[node name="IceComponent" type="Node" parent="DamageSystem"]
+script = ExtResource("4_7juwu")
+
+[node name="HeldItemPath" type="Path2D" parent="."]
+position = Vector2(0, -40)
+curve = SubResource("Curve2D_qkktc")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true
